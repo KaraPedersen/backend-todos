@@ -29,7 +29,7 @@ describe('API Routes', () => {
 
       user = response.body;
     });
-
+    
     // append the token to your requests:
     //  .set('Authorization', user.token);
 
@@ -37,7 +37,7 @@ describe('API Routes', () => {
       id: 1,
       task: 'wash the dishes',
       completed: false,
-      userId: 4,
+      userId: 1,
     };
     
     it('POST todo to /api/todos', async () => {
