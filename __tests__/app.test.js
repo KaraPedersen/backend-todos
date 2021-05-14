@@ -80,7 +80,7 @@ describe('API Routes', () => {
       expect(response.body).toEqual(expect.not.arrayContaining([todo1, otherTodo]));
     });
 
-    it('PUT /api/me/todos/:id/completed', async () => {
+    it('PUT /api/todos/:id/completed', async () => {
 
       todo1.completed = true;
       todo1.task = 'feed cat';
