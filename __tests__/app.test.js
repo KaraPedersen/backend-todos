@@ -96,6 +96,17 @@ describe('API Routes', () => {
       expect(response.body).toEqual(todo1);
     });
 
+    it('Delete /api/todos/:id', async () => {
+      const response = await request.delete(`/api/todos/${todo1.id}`).set('Authorization', user.token);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(todo1);
+
+      const newResponse = await request.get('/api/todos');
+      expect(newResponse.status).toBe(200);
+      expect(newResponse.body.find(todo => todo.id === todo1.id)).toBeUndefined();
+
+    });
+
   });
 
 });
