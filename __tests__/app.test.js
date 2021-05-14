@@ -74,10 +74,11 @@ describe('API Routes', () => {
 
       // we are testing 
 
-      const response = await request.get('/api/todos')
+      const response = await request.get('/api/me/todos')
         .set('Authorization', user.token);
+
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(expect.not.arrayContaining([todo1, otherTodo]));
+      expect(response.body).toEqual([todo1, otherTodo]);
     });
 
     it('PUT /api/todos/:id/completed', async () => {
@@ -101,9 +102,9 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual(todo1);
 
-      const newResponse = await request.get('/api/todos');
+      const newResponse = await request.get('/api/me/todos').set('Authorization', user.token);
       expect(newResponse.status).toBe(200);
-      expect(newResponse.body.find(todo => todo.id === todo1.id)).toBeUndefined();
+      expect(newResponse.body).toEqual(expect.not.arrayContaining([todo1]));
 
     });
 
