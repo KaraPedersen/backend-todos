@@ -11,7 +11,7 @@ describe('API Routes', () => {
     return client.end();
   });
 
-  describe('/api/cats', () => {
+  describe('/api/todos', () => {
     let user;
 
     beforeAll(async () => {
