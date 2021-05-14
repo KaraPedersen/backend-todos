@@ -57,5 +57,41 @@ describe('API Routes', () => {
       todo1 = response.body;
     });
 
+    it('GET /api/me/todos ', async () => {
+
+      const toDoResponse = await request
+        .post('/api/todos')
+        .set('Authorization', user.token)
+        .send({
+          task: 'wash the dishes',
+          completed: false,
+
+          userId: 1,
+        });
+
+      expect(toDoResponse.status).toBe(200);
+      const otherTodo = toDoResponse.body;
+
+      // we are testing 
+
+      const response = await request.get('/api/todos')
+        .set('Authorization', user.token);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.not.arrayContaining([todo1, otherTodo]));
+    });
+
+    it('PUT /api/me/todos ', async () => {
+
+      
+
+      // we are testing 
+
+      const response = await request.get('/api/todos')
+        .set('Authorization', user.token);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.not.arrayContaining([todo1, otherTodo]));
+    });
+
   });
+
 });
